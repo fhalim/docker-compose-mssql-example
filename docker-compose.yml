@@ -1,0 +1,19 @@
+version: '3'
+services:
+  mssql:
+    image: "microsoft/mssql-server-linux:2017-CU11"
+    environment:
+    - ACCEPT_EULA=Y
+    - SA_PASSWORD=Pa55w0rd12345
+    - MSSQL_PID=Developer
+    ports:
+    - "1433:1433"
+    restart: "no"
+  myapp:
+    build: myapp
+    environment:
+      - SQLSERVER_HOSTNAME=mssql
+    links:
+    - mssql
+    ports:
+      - "8080:8080"
