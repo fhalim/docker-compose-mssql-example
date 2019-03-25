@@ -5,12 +5,17 @@ import os
 who = "world"
 greeting = "hello"
 
-def getmessage():
+def getmessage(who):
         
     if "GREETING" in os.environ:
         greeting = os.environ["GREETING"]
 
-    if len(sys.argv) > 1:
-        who = sys.argv[1]
     return f"{greeting}, {who}"
-print(getmessage())
+
+
+from flask import Flask
+app = Flask(__name__)
+
+@app.route("/hello/<who>")
+def hello(who):
+    return getmessage(who)
