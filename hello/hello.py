@@ -5,9 +5,12 @@ import os
 who = "world"
 greeting = "hello"
 
-if "GREETING" in os.environ:
-    greeting = os.environ["GREETING"]
+def getmessage():
+        
+    if "GREETING" in os.environ:
+        greeting = os.environ["GREETING"]
 
-if len(sys.argv) > 1:
-    who = sys.argv[1]
-print(f"{greeting}, {who}")
+    if len(sys.argv) > 1:
+        who = sys.argv[1]
+    return f"{greeting}, {who}"
+print(getmessage())
